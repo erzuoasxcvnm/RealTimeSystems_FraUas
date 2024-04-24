@@ -1,0 +1,42 @@
+1- whoami : is dedicated to print the current user name 
+
+2- groups : should display system groups e.g. sudo or  docker and other
+
+3- pwd    : pwd stands for print working directory and print the current 
+	    directory where you are located
+
+4- date   : returns the current date like, DD DD. MM hh:mm:ss CEST YYYY
+
+5- echo Hello : echo is returning the string Hello as output, echo is 
+		like print but it can take also variables using $,
+	        e.g : echo "This is my current directory : $PWD"  
+
+6- echo $PATH : PATH is an environement varialble that specifies
+	        the directories in which executable programs* are located
+		on the machine that can be started without knowing and 
+		typing the whole path to the file on the command line.
+		executing echo $PATH will return all environment variables 
+
+7- export MYLABEL=blabla : export is a built-in shell command used to export 
+			   environment variables from the shell to child processes
+			   In this case the string blabla is stored in  MYLABEL, 
+                           by executing echo $MYLABEL, blabla will be printed 
+
+8- echo $MYLABEL : return the value stored in MYLABEL
+
+9- ps -ef : list all running processes on the system
+
+10- ps –ef > ps.out : the output of ps -ef will be stored (overwrite) to a file named ps.out
+
+11- cat ps.out : cat is dedicated to print files content in linux and it has 
+		 other usages by using it's options as listed in its man page
+
+12- more ps.out : as a new bie in linux, more is doing the same as cat but with a 
+		  scrolling features using the arrows (Up, Down) for pagination (page by page)
+		  and a progress 
+		  value in %, once progress = 100%, more quits and prints the 
+		  file content as cat does
+
+13- ls ps.out : same as more command but not page by page , now line by line 
+
+14- head ps.out : prints the first lines of one or more files (in this case ps.out) (or piped data) to standard output
