@@ -1,0 +1,27 @@
+int potPin = A1;
+// PWM pin for the LEDs (both active high and low)
+int pwmPin = 9;   
+
+void setup() {
+  // serial communication init
+   Serial.begin(9600);       
+   pinMode(pwmPin, OUTPUT);  
+}
+
+void loop() {
+   int potValue = analogRead(potPin);      
+   int pwmValue = map(potValue, 0, 1023, 0, 255);  
+   
+   analogWrite(pwmPin, pwmValue);           
+   
+   // Logs
+   Serial.print("Potentiometer value: ");
+   Serial.print(potValue);
+   Serial.print(", PWM value for LED 1: ");
+   Serial.print(pwmValue);
+   Serial.print(", PWM value for LED 2 (inverse): ");
+   Serial.println(255 - pwmValue);
+   
+   // Short delay for stability nach chatGPT
+   delay(10);  
+}
