@@ -1,0 +1,48 @@
+const int potPin = A0;  // Potentiometer connected to A0
+const int ledPins[] = {6, 7, 8, 9};  // LED pins
+
+void setup() {
+  // Initialize the LED pins as outputs
+  for (int i = 0; i < 4; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+
+  // Start the serial communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the analog value from the potentiometer
+  int sensorValue = analogRead(potPin);
+  
+  // Map the sensor value (0-1023) to a range for each LED section (0-255)
+  int mappedValue = map(sensorValue, 0, 1023, 0, 1023);
+  
+  // Calculate the brightness for each LED
+  for (int i = 0; i < 4; i++) {
+    int brightness = 0;
+
+    // Calculate the starting and ending range for each LED
+    int startRange = i * 256;
+    int endRange = (i + 1) * 256;
+
+    if (mappedValue >= startRange && mappedValue < endRange) {
+      brightness = map(mappedValue, startRange, endRange, 0, 255);
+    } else if (mappedValue >= endRange && mappedValue < endRange + 256) {
+      brightness = map(mappedValue, endRange, endRange + 256, 255, 0);
+    } else if (mappedValue >= endRange + 256) {
+      brightness = 0;
+    }
+
+    analogWrite(ledPins[i], brightness);
+  }
+  
+  // Print the sensor value and mapped value to the Serial Monitor
+  Serial.print("Analog Value: ");
+  Serial.print(sensorValue);
+  Serial.print("\tMapped Value: ");
+  Serial.println(mappedValue);
+  
+  // Small delay for readability
+  delay(100);
+}
